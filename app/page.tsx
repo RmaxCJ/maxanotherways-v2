@@ -625,6 +625,13 @@ export default function Home() {
                 required
                 className="w-full bg-[#101924]/80 border border-[#22364a] rounded-xl p-3 text-xs text-white placeholder:text-brand-muted focus:outline-none focus:border-[#81ECF2] transition"
               />
+              {/* NUEVO CAMPO DE TELÉFONO */}
+              <input
+                type="tel"
+                name="telefono"
+                placeholder="Teléfono / WhatsApp (Opcional)"
+                className="w-full bg-[#101924]/80 border border-[#22364a] rounded-xl p-3 text-xs text-white placeholder:text-brand-muted focus:outline-none focus:border-[#81ECF2] transition"
+              />
               <textarea
                 name="mensaje"
                 placeholder="Mensaje"
