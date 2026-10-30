@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ParticleBackground from "./components/ParticleBackground";
-
+import { sendEmail } from "@/app/actions/sendEmail";
 type Project = {
   name: string;
   desc: string;
@@ -177,26 +177,56 @@ const experience = [
 ];
 
 const clients = [
-  { name: "Cálidda", logo: "/img/trabajosAnteriores/calidda.png" },
-  { name: "Enel", logo: "/img/trabajosAnteriores/enel.png" },
-  { name: "ISA Energía", logo: "/img/trabajosAnteriores/isa-energia.png" },
-  { name: "Fiserv", logo: "/img/trabajosAnteriores/fiserv.png" },
   { name: "Rotoplas", logo: "/img/trabajosAnteriores/Rotoplas.png" },
+  {
+    name: "Fiserv",
+    logo: "/img/trabajosAnteriores/fiserv.png",
+    scale: "scale-150",
+  },
+
+  {
+    name: "Cálidda",
+    logo: "/img/trabajosAnteriores/calidda.png",
+    scale: "scale-300",
+  },
+  {
+    name: "Enel",
+    logo: "/img/trabajosAnteriores/enel.png",
+    scale: "scale-150",
+  },
+  { name: "PsicomorfosisGF", logo: "/img/trabajosAnteriores/nombrePMGF.png" },
+  {
+    name: "ISA Energía",
+    logo: "/img/trabajosAnteriores/isa-energia.png",
+    scale: "scale-250",
+  },
+
+  { name: "Gin Group", logo: "/img/trabajosAnteriores/gingroup.png" },
+  {
+    name: "INNN",
+    logo: "/img/trabajosAnteriores/innn.png",
+    scale: "scale-300",
+  },
   {
     name: "Restaurante ENO",
     logo: "/img/trabajosAnteriores/eno-restaurante.png",
   },
-  { name: "Gin Group", logo: "/img/trabajosAnteriores/gingroup.png" },
-  { name: "INNN", logo: "/img/trabajosAnteriores/innn.png" },
-  { name: "Ticketapp", logo: "/img/trabajosAnteriores/logo_ticketapp.png" },
+  {
+    name: "Ticketapp",
+    logo: "/img/trabajosAnteriores/logo_ticketapp.png",
+    scale: "scale-75",
+  },
   {
     name: "Colegio Los Reyes Rojos",
     logo: "/img/trabajosAnteriores/losreyesrojos.png",
   },
   { name: "Galletas Marian", logo: "/img/trabajosAnteriores/marian.svg" },
-  { name: "PsicomorfosisGF", logo: "/img/trabajosAnteriores/nombrePMGF.png" },
   { name: "Penguin", logo: "/img/trabajosAnteriores/penguin.avif" },
-  { name: "Tradytec", logo: "/img/trabajosAnteriores/tradytec.png" },
+  {
+    name: "Tradytec",
+    logo: "/img/trabajosAnteriores/tradytec.png",
+    scale: "scale-[1.6]",
+  },
 ];
 const services = [
   {
@@ -220,6 +250,33 @@ const EMAIL = "rogelio_max@hotmail.com";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [statusMsg, setStatusMsg] = useState<{
+    text: string;
+    isError: boolean;
+  } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+    setStatusMsg(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const res = await sendEmail(formData);
+
+    if (res?.success) {
+      setStatusMsg({ text: "¡Mensaje enviado con éxito!", isError: false });
+      form.reset();
+    } else {
+      setStatusMsg({
+        text: "Ocurrió un error. Intenta de nuevo.",
+        isError: true,
+      });
+    }
+    setSending(false);
+  };
 
   return (
     <main className="min-h-screen bg-transparent font-sans text-brand-light selection:bg-[#81ECF2] selection:text-[#0d1622] relative pt-20">
@@ -340,19 +397,21 @@ export default function Home() {
           </div>
 
           {/* HE TRABAJADO CON */}
-
           <div className="mt-8 border-t border-white/10 pt-5">
             <p className="mb-5 text-[10px] font-semibold uppercase tracking-widest text-brand-muted">
               He trabajado con empresas como:
             </p>
-            <ul className="flex flex-wrap justify-center items-center gap-x-6 gap-y-6">
+            <ul className="flex flex-wrap justify-center items-center gap-x-8 gap-y-6">
               {clients.map((c) => (
-                <li key={c.name} className="flex items-center justify-center">
+                <li
+                  key={c.name}
+                  className="flex items-center justify-center p-2"
+                >
                   <img
                     src={c.logo}
                     alt={`Logo de ${c.name}`}
                     title={c.name}
-                    className="h-8 md:h-10 w-auto object-contain hover:scale-110 transition-transform duration-300"
+                    className={`h-8 md:h-10 w-auto object-contain hover:scale-110 transition-transform duration-300 ${c.scale || ""}`}
                     loading="lazy"
                   />
                 </li>
@@ -550,11 +609,8 @@ export default function Home() {
                 <span className="text-[#81ECF2]">✉️</span> {EMAIL}
               </p>
             </div>
-            <form
-              action="https://formspree.io/f/TU_ID"
-              method="POST"
-              className="space-y-3"
-            >
+
+            <form onSubmit={handleSubmit} className="space-y-3">
               <input
                 type="text"
                 name="nombre"
@@ -576,11 +632,21 @@ export default function Home() {
                 required
                 className="w-full bg-[#101924]/80 border border-[#22364a] rounded-xl p-3 text-xs text-white placeholder:text-brand-muted focus:outline-none focus:border-[#81ECF2] transition"
               ></textarea>
+
+              {statusMsg && (
+                <p
+                  className={`text-xs font-semibold text-center ${statusMsg.isError ? "text-red-400" : "text-[#81ECF2]"}`}
+                >
+                  {statusMsg.text}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-[#81ECF2] via-[#9AEFEA] to-[#B6F2EA] text-[#0d1622] font-extrabold py-3 rounded-full text-xs hover:opacity-90 transition shadow-md uppercase tracking-wider"
+                disabled={sending}
+                className="w-full bg-gradient-to-r from-[#81ECF2] via-[#9AEFEA] to-[#B6F2EA] text-[#0d1622] font-extrabold py-3 rounded-full text-xs hover:opacity-90 transition shadow-md uppercase tracking-wider disabled:opacity-50"
               >
-                ENVIAR SOLICITUD
+                {sending ? "ENVIANDO..." : "ENVIAR SOLICITUD"}
               </button>
             </form>
           </section>
