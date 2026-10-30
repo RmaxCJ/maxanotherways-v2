@@ -177,11 +177,15 @@ const experience = [
 ];
 
 const clients = [
-  { name: "Rotoplas", logo: "/img/trabajosAnteriores/Rotoplas.png" },
+  {
+    name: "Rotoplas",
+    logo: "/img/trabajosAnteriores/Rotoplas.png",
+    scale: "scale-100",
+  },
   {
     name: "Fiserv",
     logo: "/img/trabajosAnteriores/fiserv.png",
-    scale: "scale-150",
+    scale: "scale-125",
   },
 
   {
