@@ -39,7 +39,7 @@ const projects: Project[] = [
     name: "BeyondTacos",
     desc: "Sitio multimodal para servicios psicológicos.",
     tags: ["React", "JSON", "Gastronomía"],
-    url: "https://psicomindhealth.vercel.app/",
+    url: "https://beyondtacos.luegoluegoatumesa.com/",
     image: "/img/projects/beyondtacos.png",
   },
   {
