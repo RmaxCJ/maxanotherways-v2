@@ -218,7 +218,7 @@ const clients = [
   {
     name: "Ticketapp",
     logo: "/img/trabajosAnteriores/logo_ticketapp.png",
-    scale: "scale-75",
+    scale: "scale-90",
   },
   {
     name: "Colegio Los Reyes Rojos",
@@ -307,7 +307,7 @@ export default function Home() {
 
         {/* Botón CV Desktop */}
         <a
-          href="/cv.pdf"
+          href="/CV_RogelioMaximiliano.pdf"
           download
           className="hidden md:block rounded-full border border-[#81ECF2] bg-[#81ECF2]/10 px-4 py-1.5 text-xs text-[#81ECF2] hover:bg-gradient-to-r hover:from-[#81ECF2] hover:via-[#9AEFEA] hover:to-[#B6F2EA] hover:text-[#0d1622] font-semibold transition duration-300"
         >
@@ -357,7 +357,7 @@ export default function Home() {
               </a>
             ))}
             <a
-              href="/cv.pdf"
+              href="/CV_RogelioMaximiliano.pdf"
               download
               onClick={() => setIsMenuOpen(false)}
               className="rounded-full border border-[#81ECF2] bg-[#81ECF2]/10 px-6 py-2.5 text-xs text-[#81ECF2] font-semibold transition mt-2"
@@ -573,7 +573,7 @@ export default function Home() {
             </h3>
 
             <a
-              href="/cv.pdf"
+              href="/CV_RogelioMaximiliano.pdf"
               download
               className="mb-6 block w-full rounded-full bg-gradient-to-r from-[#81ECF2] via-[#9AEFEA] to-[#B6F2EA] px-4 py-2.5 text-center text-xs font-bold text-[#0d1622] shadow-md transition hover:opacity-90"
             >
