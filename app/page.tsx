@@ -50,6 +50,13 @@ const projects: Project[] = [
     image: "/img/projects/tlahuilab.png",
   },
   {
+    name: "Aznea",
+    desc: "PWA para una banda musical.",
+    tags: ["Movil", "PWA", "Diseño"],
+    url: "https://aznea.vercel.app/",
+    image: "/img/projects/aznea.png",
+  },
+  {
     name: "Fitness Psicoe",
     desc: "Sitio multimodal para servicios psicológicos.",
     tags: ["HTML", "CSS", "Responsive"],
