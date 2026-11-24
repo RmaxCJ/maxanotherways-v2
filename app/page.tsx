@@ -37,17 +37,24 @@ const projects: Project[] = [
   },
   {
     name: "BeyondTacos",
-    desc: "Sitio multimodal para servicios psicológicos.",
+    desc: "Sitio multimodal para servicios gastronómicos.",
     tags: ["React", "JSON", "Gastronomía"],
     url: "https://beyondtacos.luegoluegoatumesa.com/",
     image: "/img/projects/beyondtacos.png",
   },
-  {
+  /*   {
     name: "Tlahuilab",
     desc: "PWA para una empresa de diseño grafico",
     tags: ["NEXT.JS", "PWA", "Diseño"],
     url: "https://www.tlahuilab.com/",
     image: "/img/projects/tlahuilab.png",
+  }, */
+  {
+    name: "Re:suelta",
+    desc: "PWA para un centro de servicios psicológicos.",
+    tags: ["responsive", "PWA", "Psicología"],
+    url: "https://re-suelta.vercel.app/",
+    image: "/img/projects/re-suelta.png",
   },
   {
     name: "Aznea",
