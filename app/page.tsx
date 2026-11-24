@@ -50,6 +50,13 @@ const projects: Project[] = [
     image: "/img/projects/tlahuilab.png",
   }, */
   {
+    name: "Cifrador de imágenes",
+    desc: "Cifrador de imagen pixel por pixel",
+    tags: ["Cifrado", "Responsive", "Criptografía"],
+    url: "https://cifrador-imagen.vercel.app/",
+    image: "/img/projects/cifrador_imagen.png",
+  },
+  {
     name: "Re:suelta",
     desc: "PWA para un centro de servicios psicológicos.",
     tags: ["responsive", "PWA", "Psicología"],
